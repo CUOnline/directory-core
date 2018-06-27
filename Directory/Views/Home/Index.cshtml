@@ -1,0 +1,51 @@
+﻿@model Directory.Models.Links
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<img id="logo" src="~/images/cu-online.png" />
+<div id="content">
+    <h3>Standalone Web Apps</h3>
+
+    <h5>Production</h5>
+    <ul>
+        @foreach (var standaloneApp in Model.StandaloneWebApps.Where(x => !x.Url.Contains("rsstest.com")))
+        {
+            <li>
+                <a href="@standaloneApp.Url" target="_blank">@standaloneApp.Name</a>
+            </li>
+        }
+    </ul>
+
+    <h5>Test</h5>
+    <ul>
+        @foreach (var standaloneApp in Model.StandaloneWebApps.Where(x => x.Url.Contains("rsstest.com")))
+        {
+            <li>
+                <a href="@standaloneApp.Url" target="_blank">@standaloneApp.Name</a>
+            </li>
+        }
+    </ul>
+
+    <h3>LTI Configs</h3>
+
+    <ul>
+        @foreach (var ltiConfig in Model.LtiConfigs)
+        {
+            <li>
+                <a href="@ltiConfig.Url" target="_blank">@ltiConfig.Name</a>
+            </li>
+        }
+    </ul>
+
+    <h3>Other</h3>
+    <ul>
+        @foreach (var otherLink in Model.Other)
+        {
+            <li>
+                <a href="@otherLink.Url" target="_blank">@otherLink.Name</a>
+            </li>
+        }
+    </ul>
+</div>
